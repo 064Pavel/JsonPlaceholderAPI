@@ -11,8 +11,13 @@ class JsonPlaceholderAPI{
 
     public function __construct()
     {
-        $this->client = new Client(['uri' => $this->uri]);
+        $this->client = new Client(['base_uri' => $this->uri]);
     }
-}
 
+    public function getUsers()
+    {
+        $res = $this->client->get('/users');
+        return json_decode($res->getBody()->getContents());
+    }   
+}
 

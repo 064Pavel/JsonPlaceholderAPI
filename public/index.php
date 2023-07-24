@@ -4,4 +4,7 @@ require '../vendor/autoload.php';
 
 use App\JsonPlaceholderAPI;
 
-$jsonPlaceholderAPI = new JsonPlaceholderAPI();
+$api = new JsonPlaceholderAPI();
+
+$users = $api->getUsers();
+var_dump($users);

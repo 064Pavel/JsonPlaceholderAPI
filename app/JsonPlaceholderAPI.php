@@ -31,5 +31,17 @@ class JsonPlaceholderAPI{
         $res = $this->client->get('/todos', ['query' => ['userId' => $userId]]);
         return json_decode($res->getBody()->getContents());
     }
+
+    public function getPost(int $postId): object
+    {
+        $res = $this->client->get('/posts/' . $postId);
+        return json_decode($res->getBody()->getContents());
+    }
+
+    public function addPost(array $data): object
+    {
+        $res = $this->client->post('/posts', ['json' => $data]);
+        return json_decode($res->getBody()->getContents());
+    }
 }
 

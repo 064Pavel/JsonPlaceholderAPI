@@ -14,6 +14,19 @@ $api = new JsonPlaceholderAPI();
 // $posts = $api->getPostsByUser(1);
 // var_dump($posts);
 
-// // Получение постов по id пользователя
-$todos = $api->getTodosByUser(1);
-var_dump($todos);
+// // Получение заданий по id пользователя
+// $todos = $api->getTodosByUser(1);
+// var_dump($todos);
+
+// // Получение поста по id 
+// $post = $api->getPost(5);
+// var_dump($post);
+
+// // Создание нового поста
+$post = [
+    'userId' => 5,
+    'title' => 'New Post Title',
+    'body' => 'This is the body of the new post.',
+];
+$res = $api->addPost($post);
+print_r($res);

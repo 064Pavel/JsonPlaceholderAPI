@@ -32,10 +32,15 @@ $api = new JsonPlaceholderAPI();
 // print_r($res);
 
 // // Обновление поста
-$post = [
-    'title' => 'Updated Post Title',
-    'body' => 'This is the updated body of the post.'
-];
+// $post = [
+//     'title' => 'Updated Post Title',
+//     'body' => 'This is the updated body of the post.'
+// ];
 
-$res = $api->updatePost(10, $post);
-print_r($post);
+// $res = $api->updatePost(10, $post);
+// print_r($post);
+
+
+// // Удаление поста
+$res = $api->deletePost(-1);
+var_dump($res);

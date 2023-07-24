@@ -44,10 +44,21 @@ class JsonPlaceholderAPI{
         return json_decode($res->getBody()->getContents());
     }
 
-    public function updatePost(int $postId, array $data)
+    public function updatePost(int $postId, array $data): object
     {
         $res = $this->client->put('/posts/' . $postId, ['json' => $data]);
         return json_decode($res->getBody()->getContents());
+    }
+
+    public function deletePost(int $postId): array
+    {
+        try {
+            $res = $this->client->delete('/posts/' . $postId);
+            return ['message' => 'success'];
+        } catch (Exception $e) {
+            return ['message' => $e->getMessage()];
+        }
+
     }
 }
 

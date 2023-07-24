@@ -23,10 +23,19 @@ $api = new JsonPlaceholderAPI();
 // var_dump($post);
 
 // // Создание нового поста
+// $post = [
+//     'userId' => 5,
+//     'title' => 'New Post Title',
+//     'body' => 'This is the body of the new post.',
+// ];
+// $res = $api->addPost($post);
+// print_r($res);
+
+// // Обновление поста
 $post = [
-    'userId' => 5,
-    'title' => 'New Post Title',
-    'body' => 'This is the body of the new post.',
+    'title' => 'Updated Post Title',
+    'body' => 'This is the updated body of the post.'
 ];
-$res = $api->addPost($post);
-print_r($res);
+
+$res = $api->updatePost(10, $post);
+print_r($post);

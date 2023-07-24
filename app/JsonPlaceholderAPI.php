@@ -43,5 +43,11 @@ class JsonPlaceholderAPI{
         $res = $this->client->post('/posts', ['json' => $data]);
         return json_decode($res->getBody()->getContents());
     }
+
+    public function updatePost(int $postId, array $data)
+    {
+        $res = $this->client->put('/posts/' . $postId, ['json' => $data]);
+        return json_decode($res->getBody()->getContents());
+    }
 }
 

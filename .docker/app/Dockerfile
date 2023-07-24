@@ -25,4 +25,4 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
 WORKDIR /var/www
 
 COPY . /var/www
-RUN composer install --prefer-dist --no-progress --no-suggest --no-interaction
+RUN composer install --prefer-dist --no-progress --no-suggest --no-interaction --ignore-platform-reqs

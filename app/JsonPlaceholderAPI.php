@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Exception;
 use GuzzleHttp\Client;
 
 class JsonPlaceholderAPI{
@@ -16,45 +17,135 @@ class JsonPlaceholderAPI{
 
     public function getUsers(): array
     {
-        $res = $this->client->get('/users');
-        return json_decode($res->getBody()->getContents());
+        try {
+
+            $res = $this->client->get('/users');
+            if ($res->getStatusCode() === 200) {
+                return json_decode($res->getBody()->getContents(), true);
+            } else {
+                return ['message' => 'API error: ' . $res->getStatusCode()];
+            }
+
+        } catch (GuzzleHttp\Exception\RequestException $e) {
+            return ['message' => $e->getMessage()];
+        } catch (Exception $e) {
+            return ['message' => $e->getMessage()];
+        }
     }
     
     public function getPostsByUser(int $userId): array
     {
-        $res = $this->client->get('/posts', ['query' => ['userId' => $userId]]);
-        return json_decode($res->getBody()->getContents());
+        try{
+
+            $res = $this->client->get('/posts', ['query' => ['userId' => $userId]]);
+            if($res->getStatusCode() === 200){
+                return json_decode($res->getBody()->getContents());
+            } else {
+                return ['message' => 'API error: ' . $res->getStatusCode()];
+            }
+            
+        } catch (GuzzleHttp\Exception\RequestException $e) {
+            return ['message' => $e->getMessage()];
+        } catch (Exception $e) {
+            return ['message' => $e->getMessage()];
+        }
     }
 
     public function getTodosByUser(int $userId): array
     {
-        $res = $this->client->get('/todos', ['query' => ['userId' => $userId]]);
-        return json_decode($res->getBody()->getContents());
+
+        try{
+
+            $res = $this->client->get('/todos', ['query' => ['userId' => $userId]]);
+
+            if($res->getStatusCode() === 200){
+                return json_decode($res->getBody()->getContents());
+            } else {
+                return ['message' => 'API error: ' . $res->getStatusCode()];
+            }
+
+        } catch (GuzzleHttp\Exception\RequestException $e) {
+            return ['message' => $e->getMessage()];
+        } catch (Exception $e) {
+            return ['message' => $e->getMessage()];
+        }
+
     }
 
-    public function getPost(int $postId): object
+    public function getPost(int $postId)
     {
-        $res = $this->client->get('/posts/' . $postId);
-        return json_decode($res->getBody()->getContents());
+        try{
+
+            $res = $this->client->get('/posts/' . $postId);
+
+            if($res->getStatusCode() === 200){
+                return json_decode($res->getBody()->getContents());
+            } else {
+                return ['message' => 'API error: ' . $res->getStatusCode()];
+            }
+
+        } catch (GuzzleHttp\Exception\RequestException $e) {
+            return ['message' => $e->getMessage()];
+        } catch (Exception $e) {
+            return ['message' => $e->getMessage()];
+        }
+
     }
 
-    public function addPost(array $data): object
+
+    public function addPost(array $data)
     {
-        $res = $this->client->post('/posts', ['json' => $data]);
-        return json_decode($res->getBody()->getContents());
+        try{
+
+            $res = $this->client->post('/posts', ['json' => $data]);
+
+            if($res->getStatusCode() === 201){
+                return json_decode($res->getBody()->getContents());
+            } else {
+                return ['message' => 'API error: ' . $res->getStatusCode()];
+            }
+
+        } catch (GuzzleHttp\Exception\RequestException $e) {
+            return ['message' => $e->getMessage()];
+        } catch (Exception $e) {
+            return ['message' => $e->getMessage()];
+        }
     }
 
     public function updatePost(int $postId, array $data): object
     {
-        $res = $this->client->put('/posts/' . $postId, ['json' => $data]);
-        return json_decode($res->getBody()->getContents());
+        try{
+
+            $res = $this->client->put('/posts/' . $postId, ['json' => $data]);
+
+            if($res->getStatusCode() === 200){
+                return json_decode($res->getBody()->getContents());
+            } else {
+                return ['message' => 'API error: ' . $res->getStatusCode()];
+            }
+
+        } catch (GuzzleHttp\Exception\RequestException $e) {
+            return ['message' => $e->getMessage()];
+        } catch (Exception $e) {
+            return ['message' => $e->getMessage()];
+        }
+
     }
 
     public function deletePost(int $postId): array
     {
         try {
+
             $res = $this->client->delete('/posts/' . $postId);
-            return ['message' => 'success'];
+
+            if($res->getStatusCode() === 200){
+                return ['message' => 'success'];
+            } else {
+                return ['message' => 'API error: ' . $res->getStatusCode()];
+            }
+
+        } catch (GuzzleHttp\Exception\RequestException $e) {
+            return ['message' => $e->getMessage()];
         } catch (Exception $e) {
             return ['message' => $e->getMessage()];
         }

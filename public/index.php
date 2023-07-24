@@ -19,12 +19,12 @@ $api = new JsonPlaceholderAPI();
 // var_dump($todos);
 
 // // Получение поста по id 
-// $post = $api->getPost(5);
+// $post = $api->getPost(12);
 // var_dump($post);
 
 // // Создание нового поста
 // $post = [
-//     'userId' => 5,
+//     'userId' => 2,
 //     'title' => 'New Post Title',
 //     'body' => 'This is the body of the new post.',
 // ];
@@ -36,11 +36,10 @@ $api = new JsonPlaceholderAPI();
 //     'title' => 'Updated Post Title',
 //     'body' => 'This is the updated body of the post.'
 // ];
-
 // $res = $api->updatePost(10, $post);
 // print_r($post);
 
 
 // // Удаление поста
-$res = $api->deletePost(-1);
-var_dump($res);
+// $res = $api->deletePost(21);
+// var_dump($res);

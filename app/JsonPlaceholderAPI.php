@@ -25,5 +25,11 @@ class JsonPlaceholderAPI{
         $res = $this->client->get('/posts', ['query' => ['userId' => $userId]]);
         return json_decode($res->getBody()->getContents());
     }
+
+    public function getTodosByUser(int $userId): array
+    {
+        $res = $this->client->get('/todos', ['query' => ['userId' => $userId]]);
+        return json_decode($res->getBody()->getContents());
+    }
 }
 
